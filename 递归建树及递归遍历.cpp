@@ -98,3 +98,9 @@ int main() {
     system("pause");
     return 0;
 }
+/*push() 在队尾插入一个元素
+pop() 删除队列第一个元素
+size() 返回队列中元素个数
+empty() 如果队列空则返回true
+front() 返回队列中的第一个元素
+back() 返回队列中最后一个元素*/
