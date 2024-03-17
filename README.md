@@ -1,2 +1,2 @@
 # first
-my sorces
+我的初级代码
