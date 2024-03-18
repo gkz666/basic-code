@@ -1,0 +1,54 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+// 树节点结构体定义
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+// 广度优先遍历函数
+void breadthFirstTraversal(TreeNode* root) {
+    if (root == NULL)
+        return;
+
+    // 创建一个队列，用于存放待遍历的节点
+    queue<TreeNode*> q;
+    // 将根节点入队
+    q.push(root);
+
+    while (!q.empty()) {
+        // 取出队列中的第一个节点
+        TreeNode* current = q.front();
+        q.pop();
+
+        // 访问当前节点的值
+        cout << current->val << " ";
+
+        // 将当前节点的左右子节点（如果存在）依次入队
+        if (current->left != NULL)
+            q.push(current->left);
+        if (current->right != NULL)
+            q.push(current->right);
+    }
+}
+
+int main() {
+    // 创建一个示例树
+    TreeNode* root = new TreeNode(1);
+    root->left = new TreeNode(2);
+    root->right = new TreeNode(3);
+    root->left->left = new TreeNode(4);
+    root->left->right = new TreeNode(5);
+    root->right->left = new TreeNode(6);
+    root->right->right = new TreeNode(7);
+
+    cout << "Breadth-First Traversal: ";
+    breadthFirstTraversal(root);
+    cout << endl;
+
+    return 0;
+}
