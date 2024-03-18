@@ -1,0 +1,66 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <unordered_map>
+using namespace std;
+
+// 定义图的邻接表表示
+typedef vector<vector<int>> Graph;
+
+// 求解最短路径长度的函数
+int shortestPathLength(const Graph& graph, int start, int target) {
+    // 使用队列来进行广度优先遍历
+    queue<int> q;
+    q.push(start);
+
+    // 使用哈希表记录每个节点的距离
+    unordered_map<int, int> distance;
+    distance[start] = 0;
+
+    while (!q.empty()) {
+        int current = q.front();
+        q.pop();
+
+        // 找到目标节点，返回最短路径长度
+        if (current == target) {
+            return distance[current];
+        }
+
+        // 遍历当前节点的相邻节点
+        for (int neighbor : graph[current]) {
+            // 如果相邻节点未被访问过，则更新距离并入队
+            if (distance.find(neighbor) == distance.end()) {
+                distance[neighbor] = distance[current] + 1;
+                q.push(neighbor);
+            }
+        }
+    }
+
+    // 如果未找到目标节点，则返回 -1 表示无法到达
+    return -1;
+}
+
+int main() {
+    // 示例图的邻接表表示
+    Graph graph = {
+        {1, 2},
+        {0, 3, 4},
+        {0, 5},
+        {1},
+        {1, 6},
+        {2},
+        {4}
+    };
+
+    int start = 0;
+    int target = 6;
+    int shortestLength = shortestPathLength(graph, start, target);
+    
+    if (shortestLength != -1) {
+        cout << "Shortest path length from node " << start << " to node " << target << " is: " << shortestLength << endl;
+    } else {
+        cout << "No path found from node " << start << " to node " << target << endl;
+    }
+
+    return 0;
+}
