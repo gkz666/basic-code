@@ -31,4 +31,9 @@ int main() {
     std::cout << std::endl;
     system("pause");
     return 0;
-}
+}/* int n;
+    cout << "请输入数组大小: ";
+    cin >> n;
+
+    // 使用 new 运算符为数组分配内存空间，并返回指向该空间的指针
+    int* arr = new int[n];*/
